@@ -1,7 +1,7 @@
 import curl
 import data
 import locators
-import time
+
 
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -41,7 +41,7 @@ class TestRegistration:
         driver.find_element(*locators.Locators.PERSONAL_ACCOUNT_BUTTON).click()
     
         # ожидание перехода в Личный Кабинет
-        WebDriverWait(driver, 20).until(EC.url_to_be(curl.PROFILE))
+        WebDriverWait(driver, 10).until(EC.url_to_be(curl.PROFILE))
         
         # проверяем, что имя пользователя при регистрации совпадает с именем пользователя при входе в личный кабинет
         assert driver.find_element(*locators.Locators.NAME_SPACE).get_attribute("value") == data.Credentials.random_name, (
