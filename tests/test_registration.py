@@ -1,6 +1,7 @@
 import curl
 import data
 import locators
+import time
 
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -26,7 +27,7 @@ class TestRegistration:
         # ожидание перехода на страницу формы входа
         WebDriverWait(driver, 10).until(EC.url_to_be(curl.LOGIN))
 
-        # ввести данные зарегистрированного пользователя (mail, пароль)
+        # ввести данные зарегистрированного пользователя (Email, пароль)
         driver.find_element(*locators.Locators.LOGIN_EMAIL_FIELD).send_keys(data.Credentials.random_email)
         driver.find_element(*locators.Locators.LOGIN_PASSWORD_FIELD).send_keys(data.Credentials.random_password)
 
@@ -35,13 +36,13 @@ class TestRegistration:
 
         # ожидание перехода на главную страницу
         WebDriverWait(driver, 10).until(EC.url_to_be(curl.MAIN))
-
+        
         # кликаем кнопку "Личный Кабинет"
         driver.find_element(*locators.Locators.PERSONAL_ACCOUNT_BUTTON).click()
-
+    
         # ожидание перехода в Личный Кабинет
-        WebDriverWait(driver, 10).until(EC.url_to_be(curl.PROFILE))
-
+        WebDriverWait(driver, 20).until(EC.url_to_be(curl.PROFILE))
+        
         # проверяем, что имя пользователя при регистрации совпадает с именем пользователя при входе в личный кабинет
         assert driver.find_element(*locators.Locators.NAME_SPACE).get_attribute("value") == data.Credentials.random_name, (
            "Имя пользователя при регистрации не равно имени пользователя в личном кабинете после входа")

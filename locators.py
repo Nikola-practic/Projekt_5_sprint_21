@@ -9,10 +9,10 @@ class Locators:
     REG_PAGE_LINK = (By.XPATH, "//a[contains(text(), 'Зарегистрироваться')]")
     
     # Поле имя в форме регистрации
-    REG_NAME_FIELD = (By.XPATH, "//*[@id='root']//input")
+    REG_NAME_FIELD = (By.XPATH, "//div[label[contains(text(), 'Имя')]]//input")
     
     # Поле email в форме регистрации
-    REG_EMAIL_FIELD = (By.XPATH, "//form//fieldset[2]//input")
+    REG_EMAIL_FIELD = (By.XPATH, "//div[label[contains(text(), 'Email')]]//input")
     
     # Поле пароль в форме регистрации
     REG_PASSWORD_FIELD = (By.XPATH, "//input[@name='Пароль']")
